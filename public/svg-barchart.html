@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <header>D3 Learnning</header>
+        <div id="content">
+        </div>
+    </div>
+            <script type="text/javascript">
+                function colorPicker(v){
+                    if ( v < 20 ) {
+                        return "#666";
+                    } else {
+                        return "#f03";
+                    }
+                }
+                function getMultiplier(h, dataset){
+                    var ceiling = 0;
+                    for(i = 0; i < dataset.length; i++){
+                        ceiling = dataset[i] > ceiling ? dataset[i] : ceiling;
+                    }
+                    return Math.floor(h / ceiling);
+                }
+
+                var w = 300,
+                    h = 200,
+                    padding = 2,
+                    dataset = [5, 10, 15, 6, 23, 12, 13, 3, 25, 22, 11],
+                    svg = d3.select('#content').append('svg')
+                        .attr('width', w).attr('height', h);
+                var barMultiplier = getMultiplier(h, dataset);
+                svg.selectAll('rect')
+                    .data(dataset)
+                    .enter()
+                    .append('rect')
+                        .attr({
+                            x: function(d, i){ return i * (w / dataset.length); },
+                            y: function(d){ return h - (d * barMultiplier); },
+                            width: (w / dataset.length - padding),
+                            height: function(d){ return d * barMultiplier; },
+                            fill: function(d){ return colorPicker(d); }
+                        });
+
+                // svg.selectAll('rect')
+                //     .data(dataset)
+                //     .enter()
+                //     .append('rect')
+                //         .attr('x', function(d, i){
+                //             return i * (w / dataset.length);
+                //         })
+                //         .attr('y', function(d){
+                //             return h - (d);
+                //         })
+                //         .attr('width', w / dataset.length - padding)
+                //         .attr('height', function(d){
+                //             return d;
+                //         })
+                //         .attr('fill', function(d){
+                //             return 'rgb(' + (d*10) + ', 0, 0)';
+                //         });
+            </script>
+</body>
+
+</html>

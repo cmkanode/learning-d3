@@ -1,0 +1,27 @@
+*, * > * {
+    box-sizing: border-box;
+}
+body {
+    background-color: #666;
+    padding: 0;
+    margin: 0;
+}
+#container {
+    margin: auto;
+    width: 800px;
+    background-color: #CCC;
+}
+header {
+    width: 100%;
+    background-color: #000;
+    color: #CCC;
+    padding: 10px;
+    min-height: 50px;
+    font-size: 20px;
+}
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 300px;
+    background-color: #CCC;
+}
